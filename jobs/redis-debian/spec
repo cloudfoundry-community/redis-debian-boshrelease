@@ -1,0 +1,6 @@
+---
+name: redis-debian
+packages: []
+templates:
+  ignoreme: ignoreme
+properties: {}
