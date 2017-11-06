@@ -30,6 +30,22 @@ processes:
   ...
 ```
 
+The deployment manifest will deploy a two-node cluster of Redis Server. If you `bosh ssh redis-debian/1` and tail the logs you will see that it forms a master-slave cluster:
+
+```
+==> /var/vcap/sys/log/redis-debian/redis.log <==
+[1] 06 Nov 03:35:18.800 * Connecting to MASTER 10.244.0.141:6379
+[1] 06 Nov 03:35:18.800 * MASTER <-> SLAVE sync started
+[1] 06 Nov 03:35:18.800 * Non blocking connect for SYNC fired the event.
+[1] 06 Nov 03:35:18.800 * Master replied to PING, replication can continue...
+[1] 06 Nov 03:35:18.800 * Partial resynchronization not possible (no cached master)
+[1] 06 Nov 03:35:18.814 * Full resync from master: 9790a38fe3ee146d9ad51800cb0c92abb11d89b2:1
+[1] 06 Nov 03:35:18.921 * MASTER <-> SLAVE sync: receiving 18 bytes from master
+[1] 06 Nov 03:35:18.921 * MASTER <-> SLAVE sync: Flushing old data
+[1] 06 Nov 03:35:18.921 * MASTER <-> SLAVE sync: Loading DB in memory
+[1] 06 Nov 03:35:18.921 * MASTER <-> SLAVE sync: Finished with success
+```
+
 ## Usage
 
 This repository includes base manifests and operator files. They can be used for initial deployments and subsequently used for updating your deployments:
