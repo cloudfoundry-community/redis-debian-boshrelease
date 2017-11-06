@@ -14,14 +14,17 @@ instance_groups:
   vm_type: default
   stemcell: default
   networks: [{name: default}]
+  persistent_disk: 10240
   jobs:
   - name: login_banner
     release: os-conf
     properties:
       login_banner:
         text: |-
+
           Oooh welcome dear operator to Redis - installed by debian, monitored by monit,
           run inside a bpm container. Thanks BOSH!
+
   - name: prepare_env
     release: os-conf
     properties:
@@ -30,11 +33,16 @@ instance_groups:
 
         apt-get update
         apt-get install redis-server -y
+
+        /usr/bin/redis-server -v
   - name: redis-debian
     release: redis-debian
-    properties: {}
+    properties:
+      password: ((redis-password))
 
-variables: []
+variables:
+- name: redis-password
+  type: password
 
 stemcells:
 - alias: default

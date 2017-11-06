@@ -1,0 +1,12 @@
+---
+processes:
+- name: redis-debian
+  executable: /usr/bin/redis-server
+  args: [/var/vcap/jobs/redis-debian/config/redis.conf]
+  ephemeral_disk: true
+  persistent_disk: true
+  limits:
+    memory: 1G
+    open_files: 1024
+  # additional_volumes:
+  # - name: /usr/bin

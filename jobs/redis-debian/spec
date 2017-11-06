@@ -1,6 +1,28 @@
 ---
 name: redis-debian
+
 packages: []
 templates:
-  ignoreme: ignoreme
-properties: {}
+  config/bpm.yml: config/bpm.yml
+  config/redis.conf: config/redis.conf
+
+# Documentation https://bosh.io/docs/links.html
+# Tutorial      https://gist.github.com/Amit-PivotalLabs/c39528248b8cdc4ba8e347f8aa68abb6
+consumes:
+- name: redis
+  type: redis
+
+provides:
+- name: redis
+  type: redis
+  properties:
+  - port
+  - password
+
+properties:
+  port:
+    description: Bind to this port
+    default: 6379
+
+  password:
+    description: Password to connect to redis-server
