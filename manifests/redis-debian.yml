@@ -15,6 +15,21 @@ instance_groups:
   stemcell: default
   networks: [{name: default}]
   jobs:
+  - name: login_banner
+    release: os-conf
+    properties:
+      login_banner:
+        text: |-
+          Oooh welcome dear operator to Redis - installed by debian, monitored by monit,
+          run inside a bpm container. Thanks BOSH!
+  - name: prepare_env
+    release: os-conf
+    properties:
+      script: |-
+        #!/bin/bash
+
+        apt-get update
+        apt-get install redis-server -y
   - name: redis-debian
     release: redis-debian
     properties: {}
@@ -37,6 +52,9 @@ releases:
 - name: bpm
   version: 0.2.0
   url: git+https://github.com/cloudfoundry-incubator/bpm-release
+- name: os-conf
+  version: latest
+  # url: git+https://github.com/cloudfoundry/os-conf-release
 - name: redis-debian
   version: latest # TODO: update after first final release
   # url:            TODO: update after first final release
