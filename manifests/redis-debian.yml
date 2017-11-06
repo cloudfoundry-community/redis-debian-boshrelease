@@ -10,7 +10,7 @@ addons:
 instance_groups:
 - name: redis-debian
   azs: [z1, z2, z3]
-  instances: 1
+  instances: 2
   vm_type: default
   stemcell: default
   networks: [{name: default}]
@@ -24,6 +24,15 @@ instance_groups:
 
           Oooh welcome dear operator to Redis - installed by debian, monitored by monit,
           run inside a bpm container. Thanks BOSH!
+
+          To tail all logs:
+            tail -f /var/vcap/sys/log/{*.log,*/*.log}
+
+          Redis Server logs:
+            tail -f /var/vcap/sys/log/redis-debian/redis.log
+
+          View monit status:
+            monit summary
 
   - name: prepare_env
     release: os-conf
