@@ -30,7 +30,16 @@ processes:
   ...
 ```
 
-The deployment manifest will deploy a two-node cluster of Redis Server. If you `bosh ssh redis-debian/1` and tail the logs you will see that it forms a master-slave cluster:
+The deployment manifest will deploy a two-node cluster:
+
+```
+$ bosh -d redis-debian instances
+Instance                                           Process State  AZ  IPs
+redis-debian/b2ba3dab-531f-40a0-b00d-de3805786d54  running        z1  10.244.0.141
+redis-debian/f52ae425-389e-410b-9264-0c1171d4fae7  running        z2  10.244.0.142
+```
+
+If you `bosh ssh redis-debian/1` and tail the logs you will see that it forms a master-slave cluster:
 
 ```
 ==> /var/vcap/sys/log/redis-debian/redis.log <==
