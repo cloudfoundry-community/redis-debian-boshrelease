@@ -38,9 +38,10 @@ meta:
     blob_failure:  '(( concat "$BUILD_PIPELINE_NAME: :airplane_arriving: <" meta.url "/teams/$BUILD_TEAM_NAME/pipelines/$BUILD_PIPELINE_NAME/jobs/$BUILD_JOB_NAME/builds/$BUILD_NAME| Failed to update the blob for $BUILD_JOB_NAME>" ))'
 
 groups:
-- name: bpm
+- name: deps
   jobs:
   - bpm-release
+  - os-conf-release
 
 jobs:
 - name: bpm-release
@@ -69,6 +70,48 @@ jobs:
         REPO_OUT:  pushme
         RELEASE:   bpm-release
         NAME:      bpm
+        GIT_EMAIL:      (( grab meta.git.email ))
+        GIT_NAME:       (( grab meta.git.name ))
+  - name: upload-git
+    put: git
+    params:
+      rebase: true
+      repository: pushme
+    on_success:
+      put: notify
+      params:
+        channel:  (( grab meta.slack.channel ))
+        username: (( grab meta.slack.username ))
+        icon_url: (( grab meta.slack.icon ))
+        text:     (( grab meta.slack.blob_success ))
+- name: os-conf-release
+  public: true
+  plan:
+  - aggregate:
+    - { get: git }
+    - { get: os-conf-release, trigger: true, params: { tarball: false }}
+  - task: bump-os-conf
+    config:
+      image_resource:
+        type: docker-image
+        source:
+          repository: (( grab meta.image.name ))
+          tag:        (( grab meta.image.tag ))
+      platform: linux
+      inputs:
+      - name: git
+      - name: os-conf-release
+      outputs:
+      - name: pushme
+      run:
+        path: ./git/ci/scripts/bump-release
+      params:
+        REPO_ROOT: git
+        REPO_OUT:  pushme
+        RELEASE:   os-conf-release
+        NAME:      os-conf
+        GIT_EMAIL:      (( grab meta.git.email ))
+        GIT_NAME:       (( grab meta.git.name ))
   - name: upload-git
     put: git
     params:
@@ -87,3 +130,7 @@ resources:
     type: bosh-io-release
     source:
       repository: cloudfoundry-incubator/bpm-release
+  - name: os-conf-release
+    type: bosh-io-release
+    source:
+      repository: cloudfoundry/os-conf-release
