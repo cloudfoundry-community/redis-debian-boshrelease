@@ -70,6 +70,8 @@ releases:
   url: git+https://github.com/cloudfoundry-incubator/bpm-release
   version: 0.2.0
 - name: os-conf
+  version: "19"
+  url: git+https://github.com/cloudfoundry/os-conf-release
 - name: redis-debian
   version: 1.0.0
   url: https://github.com/cloudfoundry-community/redis-debian-boshrelease/releases/download/v1.0.0/redis-debian-1.0.0.tgz
