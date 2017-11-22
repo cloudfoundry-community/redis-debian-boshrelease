@@ -46,7 +46,7 @@ groups:
 jobs:
 - name: bpm-release
   public: true
-  serial_group: [deps]
+  serial_groups: [deps]
   plan:
   - aggregate:
     - { get: git }
@@ -87,7 +87,7 @@ jobs:
         text:     (( grab meta.slack.blob_success ))
 - name: os-conf-release
   public: true
-  serial_group: [deps]
+  serial_groups: [deps]
   plan:
   - aggregate:
     - { get: git }
