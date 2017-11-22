@@ -34,7 +34,7 @@ instance_groups:
           View monit status:
             monit summary
 
-  - name: prepare_env
+  - name: pre-start-script
     release: os-conf
     properties:
       script: |-
