@@ -67,12 +67,9 @@ update:
 
 releases:
 - name: bpm
-  version: 0.2.0
   url: git+https://github.com/cloudfoundry-incubator/bpm-release
+  version: 0.2.0
 - name: os-conf
-  version: latest
-  # url: git+https://github.com/cloudfoundry/os-conf-release
+  version: "19"
 - name: redis-debian
-  version: latest # TODO: update after first final release
-  # url:            TODO: update after first final release
-  # sha1:           TODO: update after first final release
+  version: latest
