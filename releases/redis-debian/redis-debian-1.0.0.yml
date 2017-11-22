@@ -1,0 +1,13 @@
+name: redis-debian
+version: 1.0.0
+commit_hash: a350aa1
+uncommitted_changes: false
+jobs:
+- name: redis-debian
+  version: b0aa6c5ce6aec077fa2d215795a7e2d90ca65989
+  fingerprint: b0aa6c5ce6aec077fa2d215795a7e2d90ca65989
+  sha1: ac3643742b2688fd9da88adf16013465a5f639f0
+license:
+  version: ac77a509d8b020148f8ce7b3ecce592f89c29c87
+  fingerprint: ac77a509d8b020148f8ce7b3ecce592f89c29c87
+  sha1: a300a6f94173db1b9cbcb2d458cda3edac58354c
