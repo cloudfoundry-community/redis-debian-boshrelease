@@ -55,7 +55,7 @@ variables:
 
 stemcells:
 - alias: default
-  os: ubuntu-trusty
+  os: ubuntu-xenial
   version: latest
 
 update:
@@ -68,9 +68,9 @@ update:
 releases:
 - name: bpm
   url: git+https://github.com/cloudfoundry-incubator/bpm-release
-  version: 0.2.0
+  version: 0.12.3
 - name: os-conf
-  version: "19"
+  version: "20"
   url: git+https://github.com/cloudfoundry/os-conf-release
 - name: redis-debian
   version: 1.0.0

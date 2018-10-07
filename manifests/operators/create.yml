@@ -3,4 +3,5 @@
   path: /releases/name=redis-debian
   value:
     name: redis-debian
-    version: latest
+    version: create
+    url: file://.
