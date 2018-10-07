@@ -37,6 +37,12 @@ Rather than fetch the Debian packages from the Internet, and potentially getting
 
 See `manifests/operators/pkg-install.yml` operator, and the two folders `packages/redis` and `jobs/redis-pkg-install`.
 
+For your own BOSH release use:
+
+```plain
+bosh-gen package --apt redis-server
+```
+
 ### Configuration and running of redis-server
 
 The configuration of `redis-server` and the runtime management is performed by the job template in folder `jobs/redis-debian`. We use `bpm` to run `/usr/bin/redis-server` within a container, and the job template renders the `redis.conf` with properties provided by the deployment manifest:
