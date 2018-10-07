@@ -1,0 +1,5 @@
+check process redis-server
+  with pidfile /var/vcap/sys/run/bpm/redis-server/redis-server.pid
+  start program "/var/vcap/jobs/bpm/bin/bpm start redis-server"
+  stop program "/var/vcap/jobs/bpm/bin/bpm stop redis-server"
+  group vcap

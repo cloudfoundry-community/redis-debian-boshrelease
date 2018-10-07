@@ -1,8 +1,8 @@
 ---
 processes:
-- name: redis-debian
+- name: redis-server
   executable: /usr/bin/redis-server
-  args: [/var/vcap/jobs/redis-debian/config/redis.conf]
+  args: [/var/vcap/jobs/redis-server/config/redis.conf]
   ephemeral_disk: true
   persistent_disk: true
   limits:

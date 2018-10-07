@@ -1,5 +1,5 @@
 ---
-name: redis-debian
+name: redis-server
 
 packages: []
 templates:

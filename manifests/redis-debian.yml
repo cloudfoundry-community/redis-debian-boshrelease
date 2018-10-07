@@ -40,11 +40,13 @@ instance_groups:
       script: |-
         #!/bin/bash
 
+        chown root:root /tmp
+        chmod 1777 /tmp
         apt-get update
         apt-get install redis-server -y
 
         /usr/bin/redis-server -v
-  - name: redis-debian
+  - name: redis-server
     release: redis-debian
     properties:
       password: ((redis-password))

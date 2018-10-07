@@ -1,5 +1,0 @@
-check process redis-debian
-  with pidfile /var/vcap/sys/run/bpm/redis-debian/redis-debian.pid
-  start program "/var/vcap/jobs/bpm/bin/bpm start redis-debian"
-  stop program "/var/vcap/jobs/bpm/bin/bpm stop redis-debian"
-  group vcap
