@@ -1,0 +1,9 @@
+---
+- type: remove
+  path: /instance_groups/name=redis-debian/jobs/name=pre-start-script
+
+- type: replace
+  path: /instance_groups/name=redis-debian/jobs/1:before
+  value:
+    name: redis-pkg-install
+    release: redis-debian

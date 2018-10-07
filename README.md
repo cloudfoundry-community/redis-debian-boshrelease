@@ -1,8 +1,19 @@
 # Demonstration of using Debian packages
 
-This BOSH release deploys the Ubuntu Trusty package [redis-server](https://packages.ubuntu.com/trusty/redis-server), rather than using BOSH packaging.
+This BOSH release deploys the Ubuntu Xenial package [redis-server](https://packages.ubuntu.com/xenial/redis-server), rather than using BOSH packaging of Redis from source.
+
+## Demonstrations
 
 This is a demonstration of the ability to use external packaging systems, such as Debian packages and remote Debian repositories, within BOSH deployments.
+
+There are two demonstrations:
+
+1. using the `os-conf` release to install `apt-get install redis-server` during pre-start of each VM
+2. bundling the Debian packages into a BOSH package during compilation
+
+The configuration and startup of `redis-server` is the same for both, via an independent `redis-server` job.
+
+### Install during pre-start
 
 The installation of `redis-server` is described in the deployment manifest `manifests/redis-debian.yml` using the `prepare_env` job from `os-conf`:
 
@@ -13,11 +24,20 @@ The installation of `redis-server` is described in the deployment manifest `mani
     script: |-
       #!/bin/bash
 
+      chown root:root /tmp
+      chmod 1777 /tmp
+
       apt-get update
       apt-get install redis-server -y
-
-      /usr/bin/redis-server -v
 ```
+
+### Install via BOSH package
+
+Rather than fetch the Debian packages from the Internet, and potentially getting different packages each time a VM starts, we can freeze the Debian packages (and their dependencies) in a single BOSH package. We then use a special-purpose BOSH job to install them during pre-start.
+
+See `manifests/operators/pkg-install.yml` operator, and the two folders `packages/redis` and `jobs/redis-pkg-install`.
+
+### Configuration and running of redis-server
 
 The configuration of `redis-server` and the runtime management is performed by the job template in folder `jobs/redis-debian`. We use `bpm` to run `/usr/bin/redis-server` within a container, and the job template renders the `redis.conf` with properties provided by the deployment manifest:
 

@@ -1,0 +1,5 @@
+---
+name: redis-pkg-install
+packages: ["redis"]
+templates:
+  bin/pre-start.sh: bin/pre-start
