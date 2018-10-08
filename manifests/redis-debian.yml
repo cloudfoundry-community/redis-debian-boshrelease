@@ -75,6 +75,9 @@ releases:
   url: git+https://github.com/cloudfoundry/os-conf-release
   version: "20"
 - name: redis-debian
-  sha1: d1cc98205371a98e344312d3457fad0e293247df
-  url: https://github.com/cloudfoundry-community/redis-debian-boshrelease/releases/download/v2.0.0/redis-debian-2.0.0.tgz
+  sha1: abe38ef93467135df50ad97a4aaa3585521406a0
+  stemcell:
+    os: ubuntu-trusty
+    version: "97.22"
+  url: https://s3.amazonaws.com/redis-debian-boshrelease/compiled-releases/redis-debian/redis-debian-2.0.0-ubuntu-xenial-97.22-20181008-022511-200921028-20181008022512.tgz
   version: 2.0.0
