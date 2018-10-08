@@ -1,0 +1,23 @@
+name: redis-debian
+version: 2.0.0
+commit_hash: 289e1eb
+uncommitted_changes: false
+jobs:
+- name: redis-pkg-install
+  version: 06efb2d671174f0234c21972ede43c850558e5b6
+  fingerprint: 06efb2d671174f0234c21972ede43c850558e5b6
+  sha1: c8e9cb81f0074a09875e7b99943fb999ad17a4cc
+- name: redis-server
+  version: 3af037c41d387b9dd4eaa6e852e0f9d74bfc0cf3
+  fingerprint: 3af037c41d387b9dd4eaa6e852e0f9d74bfc0cf3
+  sha1: 8eb4bce7d66f08eb952dc99eb2f5891a25d834fb
+packages:
+- name: redis
+  version: 8c634ec57bdd4e15df5695d57847b9e9653cf87e
+  fingerprint: 8c634ec57bdd4e15df5695d57847b9e9653cf87e
+  sha1: f3d808e9953cf96289c6e3f21664a14b7e80002c
+  dependencies: []
+license:
+  version: ac77a509d8b020148f8ce7b3ecce592f89c29c87
+  fingerprint: ac77a509d8b020148f8ce7b3ecce592f89c29c87
+  sha1: a300a6f94173db1b9cbcb2d458cda3edac58354c
