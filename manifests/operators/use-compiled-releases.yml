@@ -1,0 +1,15 @@
+- path: /releases/name=redis-debian/url
+  type: replace
+  value: "https://s3.amazonaws.com/redis-debian-boshrelease/compiled-releases/redis-debian-2.0.0-ubuntu-xenial-97.22-20181008-014439-387723869-20181008014440.tgz"
+- path: /releases/name=redis-debian/version
+  type: replace
+  value: "2.0.0"
+- path: /releases/name=redis-debian/sha1
+  type: replace
+  value: "0740d63227e834956bd9e7c21481a68dd0c8420e"
+
+- path: /releases/name=redis-debian/stemcell?
+  type: replace
+  value:
+    os: "ubuntu-xenial"
+    version: "97.22"
